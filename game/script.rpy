@@ -3,6 +3,7 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
+# please put variables outside of label start: for easier handling // dearev
 #player character talking
 define pct = Character("[pcname]", dynamic=True, what_prefix="\"", what_sufix="\"", default="Gen")
 #Security Guard talking
@@ -14,6 +15,9 @@ define iv = Character("Impatient Voice", color="#c20000")
 #it's me
 define bwa = Character("BWA", what_color="#a44ad8", who_color="#a44ad8")
 
+# other variables 
+default pcserial = None
+
 #sets [pcname] to Gen
 #python:
 #    pcname = renpy.input("Tell me you want to be called while you're here so I can put it in already.", length=32)
@@ -23,20 +27,18 @@ define bwa = Character("BWA", what_color="#a44ad8", who_color="#a44ad8")
 #        pcname = "Gen"
 
 # Function to assign a randomized number between 6000 and 80000 to the pc that is assigned to them as a variable/alias, on a per playthrough basis, "pcserial". Need to figure out how to get it to save to somewhere the game can always load it?
-
+# above has been done, see below
 
 
 # The game starts here.
 
 label start:
 
-    default pcserial = 420690
-    
-    #$ renpy.retain_after_load()
-    #$ pcserial = renpy.random.randint(6000, 80000)
-    #$ renpy.block_rollback()
+    # 420690
+    if pcserial is None:
+        $ pcserial = renpy.random.randint(6000, 80000)
+        # above should assign a serial // dearev
 
-    
 
     # Show a background. This uses a placeholder by default, but you can
     # add a file (named either "bg room.png" or "bg room.jpg") to the
