@@ -238,38 +238,9 @@ label start:
     
     "Intern" "\"He, she, it, they? What do you want people to call you when they talk about you? I know that we don't teach you Experiments everything, but I know your education covered {i}this{/i}.\""
 #The below is from the pronoun tool and apparently needs to be added specifically here?
-    label pronounselection:
-
-    menu:
-        "Intern" "\"So. What do you want me to put in the system?\""
-        "[pronounlist[0]!t]":
-            $ pronoun = 0
-        "[pronounlist[1]!t]":
-            $ pronoun = 1
-        "[pronounlist[2]!t]":
-            $ pronoun = 2
-        "[pronounlist[3]!t]":
-            $ pronoun = 3
-
-        # TODO: Make sure to add any extra pronouns you included. For example, if you added one pronoun, you would remove the #s at the beginning of the commented-out option to add in your pronoun.
-
-    $ selectedpronouns = pronounlist[pronoun]
-
-    # This calls the label for updating self-voicing text tags.
-
-    call tts_tag_update
-
-    # TODO: The following are used in this guide to set the pronoun variables to match the selected pronouns (as explained below). These would need to be changed if you need more/different variables (e.g., for translations).
-
-    $ they = theylist[pronoun]
-    $ them = themlist[pronoun]
-    $ their = theirlist[pronoun]
-    $ theirs = theirslist[pronoun]
-    $ s = slist[pronoun] # TODO: If you want to use "s" for a character or a variable elsewhere, you will have to change the "s" here to something else (e.g., default ss = slist[pronoun]). You would also need to change it in pronounselection.
-    $ es = eslist[pronoun]
-    $ are = arelist[pronoun]
-
-    return
+    #The below is from the pronoun tool and apparently needs to be added specifically here?
+    # fixed this by calling from pronuntool.rpy no need to repaste the whole thing in
+    call pronounselection
 
     "Intern" "He inputs something, and then points at a sign, \"Go to that sign, then wait. I assume you at least know your numbers?\" You don't even get the chance to nod or shake your head before he continues, \"You'll wait there until you get a message display on your chip. Follow the directions. Then go to the room with that number.\""
 
