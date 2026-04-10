@@ -23,7 +23,7 @@ define bwa = Character("BWA", what_color="#a44ad8", who_color="#a44ad8")
 # other variables 
 default pcserial = None
 
-#sets [pcname] to Gen
+define pcname = "Gen"
 #python:
 #    pcname = renpy.input(default='Gen',length=32,(prompt="Intern"=character "\"Tell me you want to be called while you\'re here so I can put it in already.\"")
 #    pcname = pcname.strip()
@@ -115,7 +115,7 @@ label start:
 
     "You" "{i}'Wait...'{/i} you think, —{nw=3}"
 
-    "You" "—whipping your head around as you realize that this is NOT where you fell asleep. Dread sets in. '{i}{b}Oh no.{/ib}\'"
+    "You" "—whipping your head around as you realize that this is NOT where you fell asleep. Dread sets in. '{i}{b}Oh no.{/i}{/b}\'"
 
     iv "\"Subject [pcserial], approach the door of the transport pod and place your hands through the slot.\""
 
@@ -232,7 +232,7 @@ label start:
 
     "Intern" "They— he? You think he? He sighs, looking like he's tired of... everything. He speaks slowly, as if explaining to someone very young, \"Your name in the system is [pcname]. If that's not right or you want it changed, this is the time to do it.\""
 
-    "You" "A human is asking what {b}you{/b} want? That's... unusual. {nw2}"
+    "You" "A human is asking what {b}you{/b} want? That's... unusual. {nw=2}"
     
     "You" "Unusual things with humans are scary. Slowly you ask. \"...Why does what I want matter?\""
 
@@ -243,11 +243,8 @@ label start:
     python:
         pcname = renpy.input(default='Gen',length=32,prompt= "Tell me you want to be called while you\'re here so I can put it in already.")
         pcname = pcname.strip()
-    
-    #if not pcname:
-    #pcname = "Gen"
 
-    return
+    label postname:
 
     "Intern" "\"That\'s certainly a choice,\" he mutters, not even giving you time to get internally offended before asking, \"Pronouns?\""
     
@@ -257,9 +254,11 @@ label start:
 #The below is from the pronoun tool and apparently needs to be added specifically here?
     call pronounselection
 
-    "Intern" "He inputs something, and then points at a sign, \"Go to that sign, then wait. I assume you at least know your numbers?\" You don't even get the chance to nod or shake your head before he continues, \"You'll wait there until you get a message display on your chip. Follow the directions. Then go to the room with that number.\""
+    "Intern" "He inputs something, and then points at a sign, \"Go to that sign, then wait. I assume you at least know your numbers?\" You don't even get the chance to nod or shake your head before he continues," 
+    
+    "Intern" "\"You'll wait there until you get a message display on your chip. Follow the directions. Then go to the room with that number.\""
 
-    pc "'{i}It's weird that the humans are just {b}trusting{/b} me to listen.' You think, following the sign, only to turn the corner and realize that there are still plenty of armed humans in the area. \'{i}Or not.{/i}\' Well, not like you'd be too likely to directly disobey, anyway. It doesn't end well."
+    pc "'{i}It's weird that the humans are just {b}trusting{/b} me to listen.{/i}' You think, following the sign, only to turn the corner and realize that there are still plenty of armed humans in the area. \'{i}Or not.{/i}\' Well, not like you'd be very likely to directly disobey, anyway. It doesn't end well."
 
     label whypronoun:
     
@@ -283,7 +282,7 @@ label start:
 
     lc "The human in the white coat sighs again, before seemingly resigning themself to the question, \"What? What is it that you don't understand this time?\""
 
-    sgt "\"This part that you're doing now. I get the reason for this facility and for bringin\' them all here, but why does it matter for them to decide what they're called? The instructions have been to use \"them\" and \"it\" for ages."
+    sgt "\"This part that you're doing now. I get the reason for this facility and for bringin\' them all here, but why does it matter for them to decide what they're called? The instructions have been to use \"them\" and \"it\" for ages.\""
 
     lc "\"Because it might matter for the study. You don't like it when people call you Sammy instead of Samson, right?\""
 
@@ -335,9 +334,13 @@ label start:
     
     scene genericlab
 
-    lc "She then hands you... an EPDA? \"Here, look through the files on that.\" That was clearly directed to you, but then she presses a button on something and talks to someone clearly outside of the room, \"Hey, you have the SAW-11 and SAW-13 ready for transport? ...And they have all of the requested restraints on this time, right? We don't need a repeat. ...Alright, go ahead and start bringing them this way.\" She ends the call and looks at you again, raising an eyebrow. \"You should really look through that while you wait.\" She walks off to do something, messing with some sort of series of dials and keypads."
+    lc """She then hands you... an EPDA? \"Here, look through the files on that.\" That was clearly directed to you, but then she presses a button on something and talks to someone clearly outside of the room,"
+    
+    \"Hey, you have the SAW-11 and SAW-13 ready for transport? ...And they have all of the requested restraints on this time, right? We don't need a repeat. ...Alright, go ahead and start bringing them this way.\" 
+    
+    She ends the call and looks at you again, raising an eyebrow. \"You should really look through that while you wait.\" She walks off to do something, messing with some sort of series of dials and keypads."""
 
-    menu pdaornah:
+    menu epdaornah:
         "Look through the EPDA?"
         "If a human is being THAT insistent, I want to know why!":
             jump yesePDA
@@ -347,43 +350,71 @@ label start:
     label yesePDA:
     pc "This... looks like profiles on other Sawians? At least, it says they're Sawians. Looking at some of them, you can't help but question the accuracy of that. Nor are you entirely sure why she's so insistent that you look at them, but... May as well now?"
 
-    $ profilesyes = True
+    "There will be profiles here at some point."
+    #$ set profilesyes = True
     #show screen ePDA
     #"Insert the ePDA display with the profiles"
 
     jump speeddatetime
 
     label noePDA:
-    $ profilesno = True
+    #$ set profilesno = True
 
     pc "You opt to drop the ePDA onto the table without looking at the contents. You're fairly sure you hear the human sigh, but by the time you look at her she's  doing something else, this time on a computer."
 
+    "There will NOT be profiles here at some point."
+
     jump speeddatetime
 
-    label ifpdayes:
+    label speeddatetime:
 
     lc "\"Alright, come with me.\""
-#        if profilesyes "She waves for you to come with her, plucking the tablet from your hand as you pass.":
-#        else "She shakes her head at your refusal to look at the contents of the ePDA as you pass."
+    #$ if profilesyes == True then "She waves for you to come with her, plucking the tablet from your hand as you pass.":
+    #$ if else then "She shakes her head at your refusal to look at the contents of the ePDA as you pass."
     
     """You go through the door first and...
     
     You aren\'t sure what you expected, as the door hisses shut behind you, but what you see certainly isn\'t it.
     
-    The room is large, well lit, with what looks like actual furniture— made out of foam, but still furniture— arranges into sets of two seats and a table, or at least two seats side by side. Closest to several heavily armed humans, there\'s even some actual tables and chairs— made of metal and wood! One chair unusually large, and the entire set bolted to the floor, but still! There\'s even a few areas that look like piles of pillows."""
+    The room is large, well lit, with what looks like actual furniture— made out of foam, but still furniture— arranges into sets of two seats and a table, or at least two seats side by side. 
+    
+    Closest to several heavily armed humans, there\'s even some actual tables and chairs— made of metal and wood! One chair unusually large, and the entire set bolted to the floor, but still! 
+    
+    There\'s even a few areas that look like piles of pillows."""
 
-    pc "Your shock at the presence of furniture is replaced by anxiety, but not surprise at the presence of the other Sawians depicted in the profiles on the tablet, and some of them are certainly more heavily restrained than any of the others. Given what you read, you aren't entirely surprised."
+    pc "Your shock at the presence of furniture is replaced by anxiety at the sight of the other Sawians in the room—— and some of them are certainly more heavily restrained than any of the others."
+    #Can't figure out how to attach a check/variable for these to the option to look at the profiles. 
     #$if profilesyes 
     #"replaced by anxiety, but not surprise at the presence of the other Sawians depicted in the profiles on the tablet, and some of them are certainly more heavily restrained than any of the others. Given what you read, you aren't entirely surprised."
     #$if profilesno "replaced by the far more urgent shock at the variety of the other beings in the room, some that you can just barely recognized as being other Sawians. The fact that many of those you\'re not #entirely convinced are Sawians are heavily restrained does not bring you any comfort."
 
     "You hear a crackle, followed by a voice."
     
-    projsm "The voice is deep, and somehow lacking any sort of mood or indicator about what the person it belongs to is like, and if going off of what little tone is present, you would think they were reading off of a list of supplies for a dorm. That meaning the voice says— in what can only be described as an emotionless drone, \"Your directive for this experiment is to approach another subject and \"socialize\" with them in pairs.\""
+    projsm """The voice is deep, and somehow lacking any sort of mood or indicator about what the person it belongs to is like, and if going by what little tone is present, you would think they were reading off of a list of supplies for a dorm. 
+    
+    That meaning the voice says— in what can only be described as an emotionless drone— \"Your directive for this experiment is to approach another subject and \"socialize\" with them in pairs.\""""
 
-    pc  "Your fur stands on end at the voice. Something about it is distinctly unnerving in a way that you don't fully understand, but you know one thing for certain. {b}You never, ever, want to personally get the attention of this human.{/b}"
+    pc  "Your fur stands on end at the voice. Something about it is distinctly unnerving in a way that you don't fully understand, but you know one thing for certain.{nw=2} "
+    
+    pc "{b}You never, ever, want to personally get the attention of this human.{/b}"
 
-    projsm "A buzzer will sound periodically. When the buzzer sounds, change to another subject and continue to \"socialize\". Do not \"socialize\" in groups larger than pairs. Do not attempt to \"socialize\" with the same subject more than once—\" the voice pauses, and something close to anger finds its way to the tone, briefly, \"{i}—We will know.{/i}\" Just as quickly, the voice goes back to sounding utterly bored by the matter, \"Failing to \"socialize\" is not advised. Do not start conflicts. Do not attempt to harm yourself. Do not attempt to harm others. Guards are present, armored, and armed with a scale of deterrents. Further instructions will be given at the end of the \"socialization\" phase."
+    projsm "\"A buzzer will sound periodically. When the buzzer sounds, change to another subject and continue to \"socialize\".\"" 
+    
+    projsm "\"Do not \"socialize\" in groups larger than pairs.\"" 
+    
+    projsm "Do not attempt to \"socialize\" with the same subject more than once—\" the voice pauses, and something close to anger finds its way to the tone, briefly, \"{i}—We will know.{/i}\"" 
+    
+    projsm "Just as quickly, the voice goes back to sounding utterly bored by the matter." 
+    
+    projsm "\"Failing to \"socialize\" is not advised.\"" 
+    
+    projsm "\"Do not start conflicts.\"" 
+    
+    projsm "\"Do not attempt to harm yourself. Do not attempt to harm others.\"" 
+    
+    projsm "\"Guards are present, armored, and armed with a scale of deterrents.\"" 
+    
+    projsm "\"Further instructions will be given at the end of the \"socialization\" phase.\""
 
     pc "You can hear the quotes around the word \"socialize\" everytime the voice says it, and while you aren't entirely sure what that says about the person the voice belongs to, it certainly reinforces your desire to avoid them."
 
@@ -391,74 +422,91 @@ label start:
     
     projsm "2,{nw=1}"
     
-    projsm "1.{nw=1}"
+    projsm "1.{nw=1}\""
 
-    "The buzzer buzzes, and some of the Sawians seem to have someone specific in mind as they practically run towards someone. Others, like you, seem overwhelmed by the amount of options and remain frozen to where they were when the buzzer sounded."
+    "The buzzer sounds, and some of the Sawians seem to have someone specific in mind as they practically run towards someone. Some take a moment to look around before approaching someone."
+    
+    "Others, like you, seem overwhelmed by the amount of options and remain frozen to where they were when the buzzer sounded."
 
-    menu choosefirst:
+    #This menu will need tweaked to either display two columns of options, a scroll wheel, or to shift to another menu while retaining the ability to remove selected options. 
+
+    menu choosespeeddate:
         "Among the available participants, who should you approach?"
         "There's another Experiment like me here. Something feels oddly familiar about them.":
             jump Softyintro
         "(N/A)":
             jump placeholderchoice
-        "N/A ":
+        "(N/A) ":
             jump placeholderchoice
-        "N/A ":
-            jump placeholderchoice
-        "N/A ":
-            jump placeholderchoice
-        "N/A ":
-            jump placeholderchoice
-        "N/A ":
-            jump placeholderchoice
-        "N/A ":
-            jump placeholderchoice
-        "N/A ":
-            jump placeholderchoice
+        "Done":
+            jump speeddatedone
         
 label placeholderchoice:
 
 "Why are you here?"
-jump choosefirst
+jump choosespeeddate
+
+label Softyintro:
+
+"This is empty right now, please comeback later."
+jump choosespeeddate
 
 label speeddatedone:
 
-    "The buzzer goes off again."
+"The buzzer goes off again."
 
-    projsm "\"[pcserial], enter the door on the far left.\""
+projsm "\"[pcserial], enter the door on the far left.\""
 
-    pc "You follow the instructions, wondering what they plan on doing to you."
+pc "You follow the instructions, wondering what they plan on doing to you."
 
-    "In the room is a scientist, the one who gave you the ePDA earlier."
+"In the room is a scientist, the one who gave you the ePDA earlier."
 
-    lc "Lucky you! You get first pick. So, out of the other participants, who do you want to have as your partner?"
+lc "Lucky you! You get first pick. So, out of the other participants, who do you want to have as your partner?"
 
-    pct "What?"
+pct "What?"
 
-    pc "You're starting to feel like a broken music player."
+pc "You're starting to feel like a broken music player."
 
-    lc "Oh, right. You need to pick someone out of the group that you were just with, that you want to spend a lot of time with in the future. You'll do exercises with them, eat together, and sleep in the same room... in most cases, at least. You'll find out why after everyone is paired off."
+lc "\"Oh, right. You need to pick someone out of the group that you were just with, that you want to spend a lot of time with in the future.\""
 
-    menu routechoice:
-        lc "So, who do you want to be paired up with?"
-        "Softy.":
-            jump softypartnercheck
-        "N/A":
-            jump placeholder
+lc "\"You'll do exercises with them, eat together, and sleep in the same room... in most cases, at least. You'll find out why after everyone is paired off.\""
 
-    jump softypartnercheck
+#The same thing as is the case for the speeddating portion will need to be done for this menu.
+
+menu routechoice:
+    lc "So, who do you want to be paired up with?"
+    "Softy.":
+        jump softypartnercheck
+    "N/A":
+        jump placeholder
+    "N/A":
+        jump placeholder
+    "N/A":
+        jump placeholder
+    "N/A":
+        jump placeholder
+
+label softypartnercheck:
     menu softypartner:
-        lc "Are you sure? You can't change partners after this, even if you decide your partner."
-        "Choice 1":
+        lc "Are you sure? You can't change partners after this, even if you decide your partner is a bad match."
+        "I'm sure.":
             jump softyroutestart
-        "Choice 2":
+        "Let me think it over again.":
             jump routechoice
         
 
     label placeholder:
-        
+    lc "That Sawian currently doesn't exist."
+    jump routechoice
 
-bwa "This is where it ends for now. Hopefully, this gives enough context on the room and scenario that everyone feels comfortable starting their routes.  It\'s important to make sure that no one uses any labels that overlap, since renpy treats all rpy files as being a single one, afaik. This has the benefit of every route being able to be set in it's own rpy file, though. The same thing applies to variables, afaik, at least if the variable is present in this section."
+    label softyroutestart:
+bwa """This is where it ends for now. Hopefully, this gives enough context on the room and scenario that everyone feels comfortable starting their route(s).  
+
+It\'s important to make sure that no one uses any labels that overlap, since renpy treats all rpy files as being a single one, afaik. 
+
+This has the benefit of every route being able to be set in it's own rpy file, though. The same thing applies to variables, afaik, at least if the variable is present in this section."""
+
+
 
     
 
