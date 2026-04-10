@@ -9,6 +9,8 @@ define pct = Character("[pcname]", dynamic=True, what_prefix="\"", what_sufix="\
 define pc = Character("[pcname]", dynamic=True)
 #Security Guard talking
 define sgt = Character("Security Guard")
+define sgt1 = Character("Security Guard 1")
+define sgt2 = Character("Security Guard 2") 
 #scientist talking, lc for lab coat
 define lc = Character("Scientist")
 define iv = Character("Impatient Voice", color="#c20000")
@@ -66,9 +68,9 @@ label start:
     
     Somewhere that you've never been, blinking at the sight before you.
     
-    Above you is blue. A deep blue that you've only every imagined stretching out as far as you can see past the mist hanging around you. Turning your head to the side, you can see a green, soft looking material that vaguely resembles fur. 
+    Above you is blue. A deep blue that you've only every imagined stretching out as far as you can see past the mist hanging around you. Turning your head to the side, you can see a green, soft looking material that vaguely resembles fur. """
     
-    You're rather certain that it's what is called \"grass.\"
+    """You're rather certain that it's what is called \"grass.\"
     
     A large, indistinct light sits far, far above you, yet so bright it hurts to look anywhere near it.
     
@@ -129,14 +131,15 @@ label start:
 
     "You" "With no other options, you comply, backing up until your tail touches the wall, and at the lack of response, until it's squished between it and your back."
 
-    """The door hisses open, revealing two humans in the black uniforms that you've learned to associate with the kind of humans called \"security guards.\" One is holding a length of some sort of lead, while the other is carrying some type of gun.
+    "The door hisses open, revealing two humans in the black uniforms that you've learned to associate with the kind of humans called \"security guards.\" One is holding a length of some sort of lead, while the other is carrying some type of gun."
 
-    The one with the lead steps towards you while the second keeps their weapon firmly aimed at you. 
+    "The one with the lead steps towards you while the second keeps their weapon firmly aimed at you." 
 
-    You tilt your head in confusion as the lead somehow attaches to the cuffs without any sort of clip or being tied on, but decide it makes as much sense as the two somehow being stuck together."""
+    "You tilt your head in confusion as the lead somehow attaches to the cuffs without any sort of clip or being tied on, but decide it makes as much sense as the two somehow being stuck together."
 
-    sgt("Security Guard One") "\"Come with us.\" the one with the lead states, walking toward the door, tugging on the rope."
-    sgt("Security Guard Two") "\"And don't try running. It'll be a shame if I have to get your blood all over the new floors.\" The human does something that makes the gun click, and the fur on your neck rises as you hurry to follow the first human."
+    sgt1 "\"Come with us,\" the one with the lead states, walking toward the door, tugging on the rope."
+
+    sgt2 "\"And don't try running. It'll be a shame if I have to get your blood all over the new floors.\" The human does something that makes the gun click, and the fur on your neck rises as you hurry to follow the first human."
 
     """The clang of the human's boots against the metal floors echos, adding to the already disorienting noise and path being taken. It's been several minutes now, and there's no sign that you'll reach the destination soon. 
     
@@ -156,7 +159,13 @@ label start:
 
     """This facility certainly seems to be newer than the ones you've been in before, with how shiny everything is. 
     
-    The lights are bright— though not enough to cause discomfort— and none of them seem to be flickering or producing that high pitch buzz that most of the humans seem oblivious to. The vents here-and-there seem to be smaller while still providing more than enough air flow for you to feel when passing under those in the ceiling, or when passing by the ones in the wall. You take a deep breath of the air when passing under one— and immediately sneeze thanks to the nearly nose-blinding levels of 'new' smell. You stumble, being pulled along by the human despite having briefly been stopped by your sneeze, but manage to recover before you can fall.
+    The lights are bright— though not enough to cause discomfort— and none of them seem to be flickering or producing that high pitch buzz that most of the humans seem oblivious to. 
+    
+    The vents here-and-there seem to be smaller while still providing more than enough air flow for you to feel when passing under those in the ceiling, or when passing by the ones in the wall. 
+    
+    You take a deep breath of the air when passing under one— and immediately sneeze thanks to the nearly nose-blinding levels of 'new' smell. 
+    
+    You stumble, being pulled along by the human despite having briefly been stopped by your sneeze, but manage to recover before you can fall.
     
     Still, despite how small they seem to be, they're extremely well secured. You count eight screws securing on to the wall, and twelve in another— it seems like a rather silly amount of effort. 
     
@@ -183,11 +192,15 @@ label start:
 
     Only to jump as there a loud beep, followed by a hiss, as the door parts open. You look over and realize that you were paying so much attention to the door and its absurd size that you missed the gun wielding human scanning something into a reader on one side of the door."""
 
-    sgt("Security Guard 2") "The human makes a jerky motion with their gun, stating, \"What are you waiting for? get in there.\""
+    sgt2 "The human makes a jerky motion with their gun, stating, \"What are you waiting for? get in there.\""
     
     "You" "You realize that the other human is standing on the otherside of the doorway, pulling on the lead connected to your cuffs with an expression of rapidly fading patience, and hurry through the doorway."
 
-    """The door hisses again, then makes a dull {i}clunk{/i} behind you, having presumably shut behind you. You start to look around the room, only to jump when the human carry the lead approaches you and— without giving you time to think— does something that makes the cuffs around your wrist stop sticking together and instead pulls some sort of connecter from the side of one and connects it to the other. Though the lead stays attached to the cuffs, and the guard starts to pull you towards somewhere else before you even have time to process the change in restraints."""
+    """The door hisses again, then makes a dull {i}clunk{/i} behind you, having presumably shut behind you. You start to look around the room, only to jump when the human carry the lead approaches you and— without giving you time to think— 
+    
+    does something that makes the cuffs around your wrist stop sticking together and instead pulls some sort of connecter from the side of one and connects it to the other. 
+    
+    Though the lead stays attached to the cuffs, and the guard starts to pull you towards somewhere else before you even have time to process the change in restraints."""
 
     scene think dmv
 
@@ -195,13 +208,17 @@ label start:
 
     Looking around, you realize that you're not the only one of your kind in the room either at one such table or being pulled to one."""
 
-    sgt("Security Guard 1") "The human drags you to a spot that becomes empty as the Sawian in front of you steps up to the table, and order, \"Stay here until that one leaves. Then you go up to where they were standing. You do that until you go up to the table. You answer whatever questions they give you. Don't do anything you aren't told to do. Got it?\""
+    sgt1 """The human drags you to a spot that becomes empty as the Sawian in front of you steps up to the table, and orders, 
+    
+    \"Stay here until that one leaves. Then you go up to where they were standing. You do that until you get up to the table. You answer whatever questions they give you. Don't do anything you aren't told to do. Got it?\""""
 
     """You nod hurriedly, eager to convey your understanding of the instructions.
 
     The human then does something to the cuffs, and the lead that they had been pulling you around by detaches from the handcuffs with no sign that it had ever been attached.
 
-    You look around more closely now that you aren\'t actively being pulled somewhere, but find that the room— at least the part of it you can see— can effectively be summed up by what you saw when being pulled to your current spot. Metal tables with humans with EPDAs in their hands sitting across from Experiments, seemingly asking questions and typing them into their EPDAs; a tall divider behind each table, and armed humans standing throughout the room watching and occasionally talking to eachother or an Experiment."""
+    You look around more closely now that you aren\'t actively being pulled somewhere, but find that the room— at least the part of it you can see— can effectively be summed up by what you saw when being pulled to your current spot. 
+    
+    Metal tables with humans with EPDAs in their hands sitting across from Experiments, seemingly asking questions and typing them into their EPDAs; a tall divider behind each table, and armed humans standing throughout the room watching and occasionally talking to eachother or an Experiment."""
 
     "It isn't long before it's your turn, and you step up to the desk."
 
@@ -238,38 +255,7 @@ label start:
     
     "Intern" "\"He, she, it, they? What do you want people to call you when they talk about you? I know that we don't teach you Experiments everything, but I know your education covered {i}this{/i}.\""
 #The below is from the pronoun tool and apparently needs to be added specifically here?
-    label pronounselection:
-
-    menu:
-        "Intern" "\"So. What do you want me to put in the system?\""
-        "[pronounlist[0]!t]":
-            $ pronoun = 0
-        "[pronounlist[1]!t]":
-            $ pronoun = 1
-        "[pronounlist[2]!t]":
-            $ pronoun = 2
-        "[pronounlist[3]!t]":
-            $ pronoun = 3
-
-        # TODO: Make sure to add any extra pronouns you included. For example, if you added one pronoun, you would remove the #s at the beginning of the commented-out option to add in your pronoun.
-
-    $ selectedpronouns = pronounlist[pronoun]
-
-    # This calls the label for updating self-voicing text tags.
-
-    call tts_tag_update
-
-    # TODO: The following are used in this guide to set the pronoun variables to match the selected pronouns (as explained below). These would need to be changed if you need more/different variables (e.g., for translations).
-
-    $ they = theylist[pronoun]
-    $ them = themlist[pronoun]
-    $ their = theirlist[pronoun]
-    $ theirs = theirslist[pronoun]
-    $ s = slist[pronoun] # TODO: If you want to use "s" for a character or a variable elsewhere, you will have to change the "s" here to something else (e.g., default ss = slist[pronoun]). You would also need to change it in pronounselection.
-    $ es = eslist[pronoun]
-    $ are = arelist[pronoun]
-
-    return
+    call pronounselection
 
     "Intern" "He inputs something, and then points at a sign, \"Go to that sign, then wait. I assume you at least know your numbers?\" You don't even get the chance to nod or shake your head before he continues, \"You'll wait there until you get a message display on your chip. Follow the directions. Then go to the room with that number.\""
 
@@ -284,7 +270,6 @@ label start:
     lc "The sitting human— wearing glasses and a white coat of some kind— sighs, muttering, \"You \"don't get\" a number of things.\""
 
     sgt "I'm serious, I really don't get it."
-
 
     menu eavesdrop0:
         "Your spikes perk slightly at the idea that you may find out what is going on here. Should you listen in?"
@@ -310,7 +295,7 @@ label start:
 
     lc "\"For pete sake— what someone calls you can change how you feel about them. That obvious enough?\""
 
-    sgt "\"Huh, guess it does.\""
+    sgt "\"Huh, guess it is.\""
 
     jump messagereceived
 
